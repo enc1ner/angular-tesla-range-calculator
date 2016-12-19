@@ -9,6 +9,7 @@ import { BatteryService } from '../../tesla-battery.service';
         <h1>{{ title }}</h1>
         <tesla-car [wheelsize]="tesla.get('config.wheels').value"></tesla-car>
         <tesla-stats [stats]="stats"></tesla-stats>
+        <tesla-prices [prices]="prices"></tesla-prices>
         <div class="tesla-controls cf" formGroupName="config">
             <tesla-counter
             [title]="'Speed'"
@@ -55,13 +56,15 @@ export class TeslaBatteryComponent implements OnInit {
     title: string = 'Range Per Charge';
     models: any;
     stats: Stat[];
+    data: any;
     tesla: FormGroup;
+    prices: number[];
+    private pricelist: Array<number> = [120,125,135,150,160,180];
 
     private results: Array<String> = ['60', '60D', '75', '75D', '90D', 'P100D'];
 
-
     constructor(public fb: FormBuilder, private batteryService: BatteryService) { }
-
+k
     ngOnInit() {
         this.models = this.batteryService.getModelData();
         this.tesla = this.fb.group({
@@ -75,9 +78,16 @@ export class TeslaBatteryComponent implements OnInit {
         this.stats = this.calculateStats(this.results, this.tesla.controls['config'].value);
         this.tesla.controls['config'].valueChanges.subscribe(data => {
             this.stats = this.calculateStats(this.results, data);
+            this.prices = this.calculatePrice(this.pricelist, data);
         });
      }
-
+    private calculatePrice(prices, value): Array<number>  {
+        let newprices = [];
+        for (var index = 0; index < this.pricelist.length; index++) {
+            newprices.push(this.pricelist[index] * value["wheels"]/10);
+        }
+        return newprices;
+    } 
      private calculateStats(models, value): Stat[] {
          return models.map(model => {
              const {speed, temperature, climate, wheels } = value;

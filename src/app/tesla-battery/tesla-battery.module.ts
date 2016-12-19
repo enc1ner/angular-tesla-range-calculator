@@ -9,13 +9,15 @@ import { TeslaStatsComponent } from './components/tesla-stats/tesla-stats.compon
 import { TeslaCounterComponent } from './components/tesla-counter/tesla-counter.component';
 import { TeslaClimateComponent } from './components/tesla-climate/tesla-climate.component';
 import { TeslaWheelsComponent } from './components/tesla-wheels/tesla-wheels.component';
+import { TeslaPriceComponent } from './components/tesla-price/tesla-price.component';
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule
     ],
     exports: [
-        TeslaBatteryComponent
+        TeslaBatteryComponent,
+        TeslaWheelsComponent
     ],
     declarations: [
         TeslaBatteryComponent,
@@ -23,7 +25,8 @@ import { TeslaWheelsComponent } from './components/tesla-wheels/tesla-wheels.com
         TeslaStatsComponent,
         TeslaCounterComponent,
         TeslaClimateComponent,
-        TeslaWheelsComponent
+        TeslaWheelsComponent,
+        TeslaPriceComponent
     ],
     providers: [
         BatteryService

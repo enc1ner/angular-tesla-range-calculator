@@ -12,6 +12,5 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  logo:string = 'assets/logo.svg';
+export class AppComponent { logo:string = 'assets/logo.svg'; 
 }
