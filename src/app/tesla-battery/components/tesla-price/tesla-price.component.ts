@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 
 import { BatteryService } from '../../tesla-battery.service';
 @Component({
-    selector: 'tesla-prices',
+    selector: 'tesla-prices' ,
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <div class="tesla-prices">
